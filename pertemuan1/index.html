@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                font-family: monospace;
+                margin: 0;
+                color: #222;
+                background-image: url('images.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }
+
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                background: rgba(255, 255, 255, 0.4);
+                z-index: 0;
+            }
+
+            .header,
+            .content {
+                position: relative;
+                z-index: 1;
+            }
+
+            .header {
+                background: linear-gradient(135deg, rgba(31, 41, 55, 0.9), rgba(55, 65, 81, 0.9));
+                color: white;
+                padding: 30px 20px;
+                text-align: center;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            }
+
+            h1 {
+                margin: 0;
+                font-size: 2.2rem;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+            }
+
+            .content {
+                max-width: 700px;
+                margin: 30px auto;
+                background: rgba(255, 255, 255, 0.9);
+                padding: 25px 30px;
+                border-radius: 12px;
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+            }
+
+            h3 {
+                margin: 12px 0;
+                font-size: 1.1rem;
+            }
+        </style>
+        <title>Biodata</title>
+    </head>
+
+
+
+    <body>
+        <header class="header">
+            <h1>Biodata</h1>
+        </header>
+
+        <main class="content">
+            <h3>Nama : Rizqi Fauzan</h3>
+            <h3>Nim : 2441081</h3>
+            <h3>Jurusan : Teknik Informatika</h3>
+            <h3>Hobby : Main Gitar</h3>
+            <h3>Status Hubungan : single (kadang menerima jasa jadi badut)</h3>
+
+            <p><a href="dua.html">next</a></p>
+        </main>
+    </body>
+</html>
