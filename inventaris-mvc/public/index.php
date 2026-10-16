@@ -5,7 +5,10 @@ require_once __DIR__ . '/../app/core/helpers.php';
 spl_autoload_register(function ($class) {
     foreach (['core', 'controllers', 'models'] as $dir) {
         $file = ROOT_PATH . '/app/' . $dir . '/' . $class . '.php';
-        if (file_exists($file)) { require_once $file; return; }
+        if (file_exists($file)) {
+            require_once $file;
+            return;
+        }
     }
 });
 
