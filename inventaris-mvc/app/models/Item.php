@@ -33,7 +33,7 @@ class Item extends Model {
             $limit = 10;
         }
         $page = max(1, $page);
-        $offset = ($page - 1) * $limit; // Diperbaiki dari baris sebelumnya yang terpotong
+        $offset = ($page - 1) * $limit;
         $where = [];
         $params = [];
 
