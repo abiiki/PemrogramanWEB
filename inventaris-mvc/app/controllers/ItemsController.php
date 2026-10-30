@@ -2,14 +2,21 @@
 
 class ItemsController extends Controller {
 
+    public function __construct() {
+        $this->requireLogin();
+    }
+
     public function index(): void {
         $search = $_GET['search'] ?? '';
         $category = $_GET['category'] ?? '';
-        $limit = (int) ($_GET['limit'] ?? 10);
-        $page = (int) ($_GET['page'] ?? 1);
+        $search = is_string($search) ? trim($search) : '';
+        $category = is_string($category) && ctype_digit($category) ? $category : '';
+        $allowedLimits = [5, 10, 20, 50, 100];
+        $requestedLimit = filter_var($_GET['limit'] ?? 10, FILTER_VALIDATE_INT);
+        $limit = in_array($requestedLimit, $allowedLimits, true) ? $requestedLimit : 10;
+        $requestedPage = filter_var($_GET['page'] ?? 1, FILTER_VALIDATE_INT);
+        $page = $requestedPage !== false && $requestedPage > 0 ? $requestedPage : 1;
 
-        // Jika fungsi paginate belum dibuat (nanti disempurnakan di langkah 11), 
-        // sementara bisa pakai all() atau method paginate dari model Item.
         $items = $this->model('Item')->paginate($limit, $page, $search, $category);
         $categories = $this->model('Category')->all();
 
@@ -25,7 +32,6 @@ class ItemsController extends Controller {
 
     public function create(): void {
         $categories = $this->model('Category')->all();
-        // Kirim kode otomatis untuk form
         $generatedCode = $this->model('Item')->generateCode();
 
         $this->view('items/create', [
